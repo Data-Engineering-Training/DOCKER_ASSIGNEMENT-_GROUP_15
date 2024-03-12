@@ -3,37 +3,37 @@ version: '3.5'
 services:
   mysql:
     container_name: mysql_container
-    image: mysql
+    image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqlgroup15}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-NorthwindDB}
-      MYSQL_USER: ${MYSQL_USER:-group15}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mysqlgroup15}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mydatabase}
+      MYSQL_USER: ${MYSQL_USER:-mysqluser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mysqlpassword}
     volumes:
-       - mysql:/var/lib/mysql
+       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
-      - mysql
+      - mysql_network
     restart: unless-stopped
 
-  phpmyadmin:
-    container_name: phpmyadmin_container
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: ${MYSQL_USER:-group15}
-      PMA_PASSWORD: ${MYSQL_PASSWORD:-mysqlgroup15}
-      PMA_ARBITRARY: 1
+  mongo:
+    container_name: mongo_container
+    image: mongo:latest
+    volumes:
+       - mongo_data:/data/db
     ports:
-      - "${PHPMYADMIN_PORT:-8080}:80"
+      - "27017:27017"
     networks:
-      - mysql
+      - mongo_network
     restart: unless-stopped
 
 networks:
-  mysql:
+  mysql_network:
+    driver: bridge
+  mongo_network:
     driver: bridge
 
 volumes:
-    mysql:
+  mysql_data:
+  mongo_data:
