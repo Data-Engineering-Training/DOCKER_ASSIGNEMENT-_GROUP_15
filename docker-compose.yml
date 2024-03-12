@@ -17,18 +17,20 @@ services:
       - mysql
     restart: unless-stopped
 
-  phpmyadmin:
-    container_name: phpmyadmin_container
-    image: phpmyadmin/phpmyadmin
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
     environment:
-      PMA_HOST: mysql
-      PMA_USER: ${MYSQL_USER:-group15}
-      PMA_PASSWORD: ${MYSQL_PASSWORD:-mysqlgroup15}
-      PMA_ARBITRARY: 1
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
     ports:
-      - "${PHPMYADMIN_PORT:-8080}:80"
+      - "${PGADMIN_PORT:-5050}:80"
     networks:
-      - mysql
+      - postgres
     restart: unless-stopped
 
 networks:
