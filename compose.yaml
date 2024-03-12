@@ -23,7 +23,7 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_USER: ${MYSQL_USER:-group15}
-      PMA_PASSWORD: ${MYSQL_PASSWORD:-mysqlpassword}
+      PMA_PASSWORD: ${MYSQL_PASSWORD:-group10password}
       PMA_ARBITRARY: 1
     ports:
       - "${PHPMYADMIN_PORT:-8080}:80"
