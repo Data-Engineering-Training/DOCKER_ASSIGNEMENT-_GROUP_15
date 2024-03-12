@@ -5,10 +5,10 @@ services:
     container_name: mysql_container
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-setyourpassword}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mysqlgroup15}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-NorthwindDB}
       MYSQL_USER: ${MYSQL_USER:-group3}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mysqlpassword}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mysqlgroup15}
     volumes:
        - mysql:/var/lib/mysql
     ports:
