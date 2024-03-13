@@ -34,8 +34,8 @@ services:
     volumes:
       - ./data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=group15_database
-      - MONGO_INITDB_ROOT_PASSWORD=group15
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
     expose:
       - 27018
     networks:
